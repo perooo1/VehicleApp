@@ -11,8 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Repository\Mock\" />
-    <Folder Include="Service\Models\" />
     <Folder Include="Views\" />
   </ItemGroup>
 </Project>
