@@ -8,7 +8,7 @@ namespace VehicleApp.Data
     public interface IDatabaseMock<T>
     {
         Task<bool> AddItemAsync(T item);
-        Task<ICollection<T>> GetAllItems();
+        Task<ICollection<T>> GetAllItemsAsync();
         Task<T> GetItemAsync(int id);
         Task<bool> UpdateItemAsync(int id);
         Task<bool> RemoveItemAsync(T item);

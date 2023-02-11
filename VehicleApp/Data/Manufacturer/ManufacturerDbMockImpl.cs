@@ -13,10 +13,10 @@ namespace VehicleApp.Data.Manufacturer
 
         public ManufacturerDbMockImpl()
         {
-            items = populateDb();
+            items = PopulateDb();
         }
 
-        public List<VehicleManufacturer> GetManufacturers()         //used to get manufs in ModelMockDb for mapping in ctor synchronously
+        public List<VehicleManufacturer> GetManufacturers()         //used to get manufs synchronously in ModelMockDb for mapping in ctor 
         {
             return items;
         }
@@ -26,7 +26,7 @@ namespace VehicleApp.Data.Manufacturer
             throw new NotImplementedException();
         }
 
-        public Task<ICollection<VehicleManufacturer>> GetAllItems()
+        public Task<ICollection<VehicleManufacturer>> GetAllItemsAsync()
         {
             throw new NotImplementedException();
         }
@@ -46,7 +46,7 @@ namespace VehicleApp.Data.Manufacturer
             throw new NotImplementedException();
         }
 
-        private List<VehicleManufacturer> populateDb()
+        private List<VehicleManufacturer> PopulateDb()
         {
             var items = new List<VehicleManufacturer>()
             {
