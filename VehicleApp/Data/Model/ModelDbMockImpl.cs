@@ -13,9 +13,10 @@ namespace VehicleApp.Data.Model
     public class ModelDbMockImpl : IDatabaseMock<VehicleModel>
     {   
         private List<VehicleManufacturer> _manufacturers;
-        private IMapper mapper;
+        private IMapper _mapper;
         public readonly List<VehicleModel> items;
 
+        /*
         public ModelDbMockImpl(IContainer container)
         {
             var manufacturers = container.Resolve<ManufacturerDbMockImpl>();
@@ -25,14 +26,18 @@ namespace VehicleApp.Data.Model
 
             items = PopulateDb();
         }
+        */
 
-        /*
-        public ModelDbMockImpl(ManufacturerDbMockImpl manufacturersDbMock)
+        
+        public ModelDbMockImpl(ManufacturerDbMockImpl manufacturersDbMock, IContainer container)
         {
             this._manufacturers = manufacturersDbMock.GetManufacturers();
+            this._mapper = container.Resolve<IMapper>();
+
             items = PopulateDb();
         }
-        */
+        
+
         public async Task<bool> AddItemAsync(VehicleModel item)
         {
             items.Add(item);
@@ -79,43 +84,43 @@ namespace VehicleApp.Data.Model
             int hondaIndex = _manufacturers.FindIndex(it => it.Abrv == VehicleProjectConstants.HONDA);
             int teslaIndex = _manufacturers.FindIndex(it => it.Abrv == VehicleProjectConstants.TESLA);
 
-            var a5 = mapper.Map<VehicleManufacturer, VehicleModel>(_manufacturers.ElementAt(audiIndex));
-            var r8 = mapper.Map<VehicleManufacturer, VehicleModel>(_manufacturers.ElementAt(audiIndex));
+            var a5 = _mapper.Map<VehicleManufacturer, VehicleModel>(_manufacturers.ElementAt(audiIndex));
+            var r8 = _mapper.Map<VehicleManufacturer, VehicleModel>(_manufacturers.ElementAt(audiIndex));
             a5.Name = VehicleProjectConstants.A5;
             r8.Name = VehicleProjectConstants.R8;
 
-            var x1 = mapper.Map<VehicleManufacturer, VehicleModel>(_manufacturers.ElementAt(bmwIndex));
-            var kockica = mapper.Map<VehicleManufacturer, VehicleModel>(_manufacturers.ElementAt(bmwIndex));
+            var x1 = _mapper.Map<VehicleManufacturer, VehicleModel>(_manufacturers.ElementAt(bmwIndex));
+            var kockica = _mapper.Map<VehicleManufacturer, VehicleModel>(_manufacturers.ElementAt(bmwIndex));
             x1.Name = VehicleProjectConstants.X1;
             kockica.Name = VehicleProjectConstants.KOCKICA;
 
-            var tiguan = mapper.Map<VehicleManufacturer, VehicleModel>(_manufacturers.ElementAt(vwIndex));
-            var troc = mapper.Map<VehicleManufacturer, VehicleModel>(_manufacturers.ElementAt(vwIndex));
+            var tiguan = _mapper.Map<VehicleManufacturer, VehicleModel>(_manufacturers.ElementAt(vwIndex));
+            var troc = _mapper.Map<VehicleManufacturer, VehicleModel>(_manufacturers.ElementAt(vwIndex));
             tiguan.Name = VehicleProjectConstants.TIGUAN;
             troc.Name = VehicleProjectConstants.TROC;
            
-            var corolla = mapper.Map<VehicleManufacturer, VehicleModel>(_manufacturers.ElementAt(toyotaIndex));
-            var yaris = mapper.Map<VehicleManufacturer, VehicleModel>(_manufacturers.ElementAt(toyotaIndex));
+            var corolla = _mapper.Map<VehicleManufacturer, VehicleModel>(_manufacturers.ElementAt(toyotaIndex));
+            var yaris = _mapper.Map<VehicleManufacturer, VehicleModel>(_manufacturers.ElementAt(toyotaIndex));
             corolla.Name = VehicleProjectConstants.COROLLA;
             yaris.Name = VehicleProjectConstants.YARIS;
            
-            var aClass = mapper.Map<VehicleManufacturer, VehicleModel>(_manufacturers.ElementAt(mercedesIndex));
-            var cClass = mapper.Map<VehicleManufacturer, VehicleModel>(_manufacturers.ElementAt(mercedesIndex));
+            var aClass = _mapper.Map<VehicleManufacturer, VehicleModel>(_manufacturers.ElementAt(mercedesIndex));
+            var cClass = _mapper.Map<VehicleManufacturer, VehicleModel>(_manufacturers.ElementAt(mercedesIndex));
             aClass.Name = VehicleProjectConstants.ACLASS;
             cClass.Name = VehicleProjectConstants.CCLASS;
             
-            var focus = mapper.Map<VehicleManufacturer, VehicleModel>(_manufacturers.ElementAt(fordIndex));
-            var fiesta = mapper.Map<VehicleManufacturer, VehicleModel>(_manufacturers.ElementAt(fordIndex));
+            var focus = _mapper.Map<VehicleManufacturer, VehicleModel>(_manufacturers.ElementAt(fordIndex));
+            var fiesta = _mapper.Map<VehicleManufacturer, VehicleModel>(_manufacturers.ElementAt(fordIndex));
             focus.Name = VehicleProjectConstants.FOCUS;
             fiesta.Name = VehicleProjectConstants.FIESTA;
            
-            var accord = mapper.Map<VehicleManufacturer, VehicleModel>(_manufacturers.ElementAt(hondaIndex));
-            var civic = mapper.Map<VehicleManufacturer, VehicleModel>(_manufacturers.ElementAt(hondaIndex));
+            var accord = _mapper.Map<VehicleManufacturer, VehicleModel>(_manufacturers.ElementAt(hondaIndex));
+            var civic = _mapper.Map<VehicleManufacturer, VehicleModel>(_manufacturers.ElementAt(hondaIndex));
             accord.Name = VehicleProjectConstants.HONDACCORD;
             civic.Name = VehicleProjectConstants.HONDACIVIC;
 
-            var modelS = mapper.Map<VehicleManufacturer, VehicleModel>(_manufacturers.ElementAt(teslaIndex));
-            var model3 = mapper.Map<VehicleManufacturer, VehicleModel>(_manufacturers.ElementAt(teslaIndex));
+            var modelS = _mapper.Map<VehicleManufacturer, VehicleModel>(_manufacturers.ElementAt(teslaIndex));
+            var model3 = _mapper.Map<VehicleManufacturer, VehicleModel>(_manufacturers.ElementAt(teslaIndex));
             modelS.Name = VehicleProjectConstants.MODELS;
             model3.Name = VehicleProjectConstants.MODEL3;
 

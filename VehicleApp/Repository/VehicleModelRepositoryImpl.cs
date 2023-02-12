@@ -14,14 +14,11 @@ namespace VehicleApp.Repository
     {
         //These repos should implement interface eg. "IRepository" but since it would have the same methods as IDatabaseMock, I decided to reuse that one.
 
-        private ManufacturerDbMockImpl manufacturerDbMock;
         private IDatabaseMock<VehicleModel> modelDao; 
-
-        //ctor and then set manufDao
+        
         public VehicleModelRepositoryImpl(IContainer container)
         {
-            manufacturerDbMock = container.Resolve<ManufacturerDbMockImpl>();
-            modelDao = container.Resolve<ModelDbMockImpl>();                    // ovo treba biti nekako riješeno kroz DI, da mu tamo predajem manufacturerDbMock
+            modelDao = container.Resolve<ModelDbMockImpl>();
         }
 
         public Task<bool> AddItemAsync(VehicleModel item)

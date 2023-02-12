@@ -3,6 +3,7 @@ using AutoMapper;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using VehicleApp.Service.Models;
 
 namespace VehicleApp.DI.Modules
 {
@@ -14,9 +15,19 @@ namespace VehicleApp.DI.Modules
 
             builder.Register(context => new MapperConfiguration(cfg =>
             {
-                //todo add sth here, probably mapping rules(configuration)
+                cfg.AddProfile<VehicleModelProfile>();
             })).As<IMapper>()
             .InstancePerLifetimeScope();
+        }
+    }
+
+    internal class VehicleModelProfile: Profile
+    {
+        public VehicleModelProfile()
+        {
+            CreateMap<VehicleManufacturer, VehicleModel>()
+                .ForMember(dest => dest.ManufacturerId, options => options.MapFrom(src => src.Id))
+                .ForMember(dest => dest.Abrv, options => options.MapFrom(src => src.Abrv));
         }
     }
 }

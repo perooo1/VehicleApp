@@ -1,4 +1,9 @@
-﻿using Xamarin.Forms;
+﻿using VehicleApp.Data;
+using VehicleApp.Data.Manufacturer;
+using VehicleApp.Data.Model;
+using VehicleApp.DI;
+using VehicleApp.Service.Models;
+using Xamarin.Forms;
 
 namespace VehicleApp
 {
@@ -8,7 +13,12 @@ namespace VehicleApp
         public App()
         {
             InitializeComponent();
-            //should probably start autofac here?
+            DependencyService.Register<IDatabaseMock<ManufacturerDbMockImpl>>();
+
+            var manufacturersDbMock = new ManufacturerDbMockImpl();
+            var modelsDbMock = new ModelDbMockImpl(manufacturersDbMock, AutofacContainer.Container);
+
+            DependencyService.RegisterSingleton<IDatabaseMock<VehicleModel>>(modelsDbMock);
             MainPage = new AppShell();
         }
 
