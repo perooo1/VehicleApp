@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Autofac;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,34 +14,39 @@ namespace VehicleApp.Repository
     {
         //These repos should implement interface eg. "IRepository" but since it would have the same methods as IDatabaseMock, I decided to reuse that one.
 
-        private ManufacturerDbMockImpl manufacturerDao;
-        private IDatabaseMock<VehicleModel> dao = new ModelDbMockImpl(manufacturerDao); //USE DI!
+        private ManufacturerDbMockImpl manufacturerDbMock;
+        private IDatabaseMock<VehicleModel> modelDao; 
 
         //ctor and then set manufDao
+        public VehicleModelRepositoryImpl(IContainer container)
+        {
+            manufacturerDbMock = container.Resolve<ManufacturerDbMockImpl>();
+            modelDao = container.Resolve<ModelDbMockImpl>();                    // ovo treba biti nekako riješeno kroz DI, da mu tamo predajem manufacturerDbMock
+        }
 
         public Task<bool> AddItemAsync(VehicleModel item)
         {
-            return dao.AddItemAsync(item);
+            return modelDao.AddItemAsync(item);
         }
 
         public Task<ICollection<VehicleModel>> GetAllItemsAsync()
         {
-            return dao.GetAllItemsAsync();
+            return modelDao.GetAllItemsAsync();
         }
 
-        public Task<VehicleModel> GetItemAsync(int id)
+        public Task<VehicleModel> GetItemAsync(string id)
         {
-            return dao.GetItemAsync(id);
+            return modelDao.GetItemAsync(id);
         }
 
         public Task<bool> RemoveItemAsync(VehicleModel item)
         {
-            return dao.RemoveItemAsync(item);
+            return modelDao.RemoveItemAsync(item);
         }
 
-        public Task<bool> UpdateItemAsync(int id)
+        public Task<bool> UpdateItemAsync(VehicleModel item)
         {
-            return dao.UpdateItemAsync(id);
+            return modelDao.UpdateItemAsync(item);
         }
     }
 }

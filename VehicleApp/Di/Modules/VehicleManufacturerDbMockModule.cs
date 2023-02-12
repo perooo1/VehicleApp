@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using VehicleApp.Data.Manufacturer;
 using VehicleApp.Data.Model;
 using VehicleApp.Repository;
 
@@ -13,7 +14,7 @@ namespace VehicleApp.DI.Modules
         protected override void Load(ContainerBuilder builder)
         {
             base.Load(builder);
-            builder.RegisterType<ModelDbMockImpl>().AsSelf();
+            builder.RegisterType<ManufacturerDbMockImpl>().AsSelf();
         }
     }
 }

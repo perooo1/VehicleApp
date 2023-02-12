@@ -8,7 +8,7 @@ namespace VehicleApp
         public App()
         {
             InitializeComponent();
-
+            //should probably start autofac here?
             MainPage = new AppShell();
         }
 

@@ -15,7 +15,8 @@ namespace VehicleApp.DI.Modules
             builder.Register(context => new MapperConfiguration(cfg =>
             {
                 //todo add sth here, probably mapping rules(configuration)
-            })).AsSelf().SingleInstance();
+            })).As<IMapper>()
+            .InstancePerLifetimeScope();
         }
     }
 }

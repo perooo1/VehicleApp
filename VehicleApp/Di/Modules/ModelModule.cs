@@ -13,8 +13,8 @@ namespace VehicleApp.DI.VehicleModelModule
         {
             base.Load(builder);
 
-            //builder.RegisterType<VehicleModelRepositoryImpl>().As<IDatabaseMock<VehicleModelRepositoryImpl>>().SingleInstance();
-            builder.RegisterType<VehicleModelRepositoryImpl>().AsSelf().SingleInstance();
+            builder.RegisterType<VehicleModelRepositoryImpl>().As<IDatabaseMock<VehicleModelRepositoryImpl>>().SingleInstance();
+            //builder.RegisterType<VehicleModelRepositoryImpl>().AsSelf().SingleInstance();
         }
     }
 }

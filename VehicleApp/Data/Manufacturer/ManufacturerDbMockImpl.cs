@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using VehicleApp.Service.Models;
@@ -21,29 +22,39 @@ namespace VehicleApp.Data.Manufacturer
             return items;
         }
 
-        public Task<bool> AddItemAsync(VehicleManufacturer item)
+        public async Task<bool> AddItemAsync(VehicleManufacturer item)
         {
-            throw new NotImplementedException();
+            items.Add(item);
+            return await Task.FromResult(true);
         }
 
-        public Task<ICollection<VehicleManufacturer>> GetAllItemsAsync()
+        public async Task<ICollection<VehicleManufacturer>> GetAllItemsAsync()
         {
-            throw new NotImplementedException();
+            return await Task.FromResult(items);
         }
 
-        public Task<VehicleManufacturer> GetItemAsync(int id)
+        public async Task<VehicleManufacturer> GetItemAsync(string id)
         {
-            throw new NotImplementedException();
+            return await Task.FromResult(items.Find(it => it.Id == id));
         }
 
-        public Task<bool> RemoveItemAsync(VehicleManufacturer item)
+        public async Task<bool> RemoveItemAsync(VehicleManufacturer item)
         {
-            throw new NotImplementedException();
+            var itemForDeletion = items.Find(it => it.Id == item.Id);
+            items.Remove(itemForDeletion);
+
+            return await Task.FromResult(true);
         }
 
-        public Task<bool> UpdateItemAsync(int id)
+        public async Task<bool> UpdateItemAsync(VehicleManufacturer item)
         {
-            throw new NotImplementedException();
+            var old = items.Find(items=> items.Id == item.Id);
+            int index = items.IndexOf(old);
+
+            items.Remove(old);
+            items.Insert(index, item);
+
+            return await Task.FromResult(true);
         }
 
         private List<VehicleManufacturer> PopulateDb()

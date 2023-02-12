@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Autofac;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,8 +12,14 @@ namespace VehicleApp.Repository
     public class ManufacturerRepositoryImpl : IDatabaseMock<VehicleManufacturer>
     {
         //These repos should implement interface eg. "IRepository" but since it would have the same methods as IDatabaseMock, I decided to reuse that one.
-        
-        private IDatabaseMock<VehicleManufacturer> dao = new ManufacturerDbMockImpl();   //NEED TO USE DI!!
+
+        private IDatabaseMock<VehicleManufacturer> dao; 
+
+        //constructor injection!!
+        public ManufacturerRepositoryImpl(IContainer container)
+        {
+            this.dao = container.Resolve<IDatabaseMock<VehicleManufacturer>>();
+        }
 
         public Task<bool> AddItemAsync(VehicleManufacturer item)
         {
@@ -24,7 +31,7 @@ namespace VehicleApp.Repository
             return dao.GetAllItemsAsync();
         }
 
-        public Task<VehicleManufacturer> GetItemAsync(int id)
+        public Task<VehicleManufacturer> GetItemAsync(string id)
         {
             return dao.GetItemAsync(id);
         }
@@ -34,9 +41,9 @@ namespace VehicleApp.Repository
             return dao.RemoveItemAsync(item);
         }
 
-        public Task<bool> UpdateItemAsync(int id)
+        public Task<bool> UpdateItemAsync(VehicleManufacturer item)
         {
-            return dao.UpdateItemAsync(id);
+            return dao.UpdateItemAsync(item);
         }
     }
 }

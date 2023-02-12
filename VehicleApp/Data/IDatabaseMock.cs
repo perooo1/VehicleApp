@@ -9,8 +9,8 @@ namespace VehicleApp.Data
     {
         Task<bool> AddItemAsync(T item);
         Task<ICollection<T>> GetAllItemsAsync();
-        Task<T> GetItemAsync(int id);
-        Task<bool> UpdateItemAsync(int id);
+        Task<T> GetItemAsync(string id);
+        Task<bool> UpdateItemAsync(T item);
         Task<bool> RemoveItemAsync(T item);
     }
 }

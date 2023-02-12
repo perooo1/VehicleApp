@@ -13,8 +13,8 @@ namespace VehicleApp.DI.VehicleManufacturerModule
         protected override void Load(ContainerBuilder builder)
         {
             base.Load(builder);
-            //builder.RegisterType<ManufacturerRepositoryImpl>().As<IDatabaseMock<ManufacturerRepositoryImpl>>().SingleInstance();
-            builder.RegisterType<ManufacturerRepositoryImpl>().AsSelf().SingleInstance();
+            builder.RegisterType<ManufacturerRepositoryImpl>().As<IDatabaseMock<ManufacturerRepositoryImpl>>().SingleInstance();
+            //builder.RegisterType<ManufacturerRepositoryImpl>().AsSelf().SingleInstance();
         }
     }
 }
