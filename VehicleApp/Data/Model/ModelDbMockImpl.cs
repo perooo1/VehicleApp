@@ -15,20 +15,7 @@ namespace VehicleApp.Data.Model
         private List<VehicleManufacturer> _manufacturers;
         private IMapper _mapper;
         public readonly List<VehicleModel> items;
-
-        /*
-        public ModelDbMockImpl(IContainer container)
-        {
-            var manufacturers = container.Resolve<ManufacturerDbMockImpl>();
-            this._manufacturers = manufacturers.GetManufacturers();
-
-            this.mapper = container.Resolve<IMapper>();
-
-            items = PopulateDb();
-        }
-        */
-
-        
+       
         public ModelDbMockImpl(ManufacturerDbMockImpl manufacturersDbMock, IContainer container)
         {
             this._manufacturers = manufacturersDbMock.GetManufacturers();
@@ -37,7 +24,6 @@ namespace VehicleApp.Data.Model
             items = PopulateDb();
         }
         
-
         public async Task<bool> AddItemAsync(VehicleModel item)
         {
             items.Add(item);

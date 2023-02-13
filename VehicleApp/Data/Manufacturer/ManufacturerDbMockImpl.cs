@@ -8,7 +8,7 @@ using Xamarin.Forms;
 
 namespace VehicleApp.Data.Manufacturer
 {
-    public class ManufacturerDbMockImpl : IDatabaseMock<VehicleManufacturer> //potencijalno napravit dbObjekt koji je isti kao onaj u domain layeru pa mapirat
+    public class ManufacturerDbMockImpl : IDatabaseMock<VehicleManufacturer> 
     {
         public readonly List<VehicleManufacturer> items;
 

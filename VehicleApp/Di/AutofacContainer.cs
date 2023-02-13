@@ -27,8 +27,6 @@ namespace VehicleApp.DI
             builder.RegisterModule<ManufacturerModule>();
             builder.RegisterModule<ModelModule>();
                         
-            builder.RegisterModule<VehicleManufacturerDbMockModule>();
-
             return builder.Build();
         }
     }

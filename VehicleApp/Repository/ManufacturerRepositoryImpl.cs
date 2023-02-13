@@ -13,37 +13,36 @@ namespace VehicleApp.Repository
     {
         //These repos should implement interface eg. "IRepository" but since it would have the same methods as IDatabaseMock, I decided to reuse that one.
 
-        private IDatabaseMock<VehicleManufacturer> dao; 
+        private IDatabaseMock<VehicleManufacturer> db; 
 
-        //constructor injection!!
         public ManufacturerRepositoryImpl(IContainer container)
         {
-            this.dao = container.Resolve<IDatabaseMock<VehicleManufacturer>>();
+            this.db = container.Resolve<IDatabaseMock<VehicleManufacturer>>();
         }
 
         public Task<bool> AddItemAsync(VehicleManufacturer item)
         {
-            return dao.AddItemAsync(item);
+            return db.AddItemAsync(item);
         }
 
         public Task<ICollection<VehicleManufacturer>> GetAllItemsAsync()
         {
-            return dao.GetAllItemsAsync();
+            return db.GetAllItemsAsync();
         }
 
         public Task<VehicleManufacturer> GetItemAsync(string id)
         {
-            return dao.GetItemAsync(id);
+            return db.GetItemAsync(id);
         }
 
         public Task<bool> RemoveItemAsync(VehicleManufacturer item)
         {
-            return dao.RemoveItemAsync(item);
+            return db.RemoveItemAsync(item);
         }
 
         public Task<bool> UpdateItemAsync(VehicleManufacturer item)
         {
-            return dao.UpdateItemAsync(item);
+            return db.UpdateItemAsync(item);
         }
     }
 }
