@@ -28,7 +28,7 @@ namespace VehicleApp.Data.Manufacturer
             return await Task.FromResult(true);
         }
 
-        public async Task<IEnumerable<VehicleManufacturer>> GetAllItemsAsync()
+        public async Task<IEnumerable<VehicleManufacturer>> GetAllItemsAsync(bool forceRefresh = false)
         {
             return await Task.FromResult(items);
         }

@@ -10,6 +10,5 @@ namespace VehicleApp
             InitializeComponent();
             Routing.RegisterRoute(nameof(VehicleManufacturersScreen), typeof(VehicleManufacturersScreen));
         }
-
     }
 }

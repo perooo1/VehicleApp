@@ -11,12 +11,12 @@ using Xamarin.Forms;
 
 namespace VehicleApp.ViewModels
 {
-    public class VehicleManufacturersViewModel
+    public class VehicleManufacturersViewModel : BaseViewModel
     {
         private ManufacturerRepositoryImpl Repository { get; set; }
         public ObservableRangeCollection<VehicleManufacturer> Manufacturers { get; set; }
         //public ICollection<VehicleManufacturer> Manufacturers { get; set; }
-        public Command LoadManufsCommand { get;}
+        public Command LoadManufsCommand { get; }
 
         public VehicleManufacturersViewModel(ManufacturerRepositoryImpl repo)
         {
@@ -24,6 +24,7 @@ namespace VehicleApp.ViewModels
             Manufacturers = new ObservableRangeCollection<VehicleManufacturer>();
             //Manufacturers= new ObservableCollection<VehicleManufacturer>();
             LoadManufsCommand = new Command(async () => await ExecuteLoadManufsCommand());
+            Title = "Manufacturers";
 
             Trace.Listeners.Add(new TextWriterTraceListener(Console.Out));
         }
@@ -32,7 +33,7 @@ namespace VehicleApp.ViewModels
         {
 
             Manufacturers.Clear();
-            var items = await Repository.GetAllItemsAsync();
+            var items = await Repository.GetAllItemsAsync(true);
             Manufacturers.ReplaceRange(items);
             /*
             Trace.WriteLine(Manufacturers,"before await: Execute manufs command: Manufacturers");
@@ -44,17 +45,18 @@ namespace VehicleApp.ViewModels
 
         }
 
-        public async void OnAppearing()
+        public async Task OnAppearing()
         {
+            IsBusy = true;
             try
-            { 
-             Trace.WriteLine("Test123");
-            await ExecuteLoadManufsCommand();
+            {
+                Trace.WriteLine("Test123");
+                await ExecuteLoadManufsCommand();
             }
             catch (Exception e)
             {
                 var a = 9;
-                
+
             }
         }
 

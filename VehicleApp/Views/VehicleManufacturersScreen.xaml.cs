@@ -14,7 +14,6 @@ namespace VehicleApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class VehicleManufacturersScreen : ContentPage
     {
-
         private VehicleManufacturersViewModel viewModel;
         public VehicleManufacturersScreen()
         {
@@ -22,7 +21,7 @@ namespace VehicleApp.Views
 
             try
             {
-                ManufacturerRepositoryImpl repo = new ManufacturerRepositoryImpl(AutofacContainer.Container);
+                ManufacturerRepositoryImpl repo = new ManufacturerRepositoryImpl();
                 BindingContext = viewModel = new VehicleManufacturersViewModel(repo);
 
             }
@@ -34,10 +33,10 @@ namespace VehicleApp.Views
 
         }
 
-        protected override void OnAppearing()
+        protected async override void OnAppearing()
         {
             base.OnAppearing();
-            viewModel.OnAppearing();
+            await viewModel.OnAppearing();
 
         }
 

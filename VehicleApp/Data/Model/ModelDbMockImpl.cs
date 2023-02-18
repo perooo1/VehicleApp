@@ -30,7 +30,7 @@ namespace VehicleApp.Data.Model
             return await Task.FromResult(true);
         }
 
-        public async Task<IEnumerable<VehicleModel>> GetAllItemsAsync()
+        public async Task<IEnumerable<VehicleModel>> GetAllItemsAsync(bool forceRefresh = false)
         {
             return await Task.FromResult(items);
         }

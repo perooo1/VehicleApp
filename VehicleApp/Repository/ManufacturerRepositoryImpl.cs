@@ -26,11 +26,11 @@ namespace VehicleApp.Repository
             return db.AddItemAsync(item);
         }
 
-        public Task<IEnumerable<VehicleManufacturer>> GetAllItemsAsync()
+        public Task<IEnumerable<VehicleManufacturer>> GetAllItemsAsync(bool forceRefresh = false)
         {
             Trace.WriteLine("inside repository, inside get all items async");
             Trace.WriteLine(db, "db is:");
-            return db.GetAllItemsAsync();
+            return db.GetAllItemsAsync(forceRefresh);
         }
 
         public Task<VehicleManufacturer> GetItemAsync(string id)

@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             xmlns:local="clr-namespace:VehicleApp.Service.Models"
+             xmlns:local="clr-namespace:VehicleApp.Service.Models" xmlns:viewmodels="clr-namespace:VehicleApp.ViewModels"
+             Title="{Binding Title}"
              x:Class="VehicleApp.Views.VehicleManufacturersScreen">
 
 
@@ -15,32 +16,23 @@
     </ContentPage.Content>
 -->
 
-    
-    <CollectionView
-        x:Name="manufacturersList"
-        ItemsSource="{Binding Manufacturers}"
-        SelectionMode="Single">
-        
-        <CollectionView.ItemsLayout>
-            <LinearItemsLayout
-                Orientation="Vertical"
-                ItemSpacing="10"/>
-        </CollectionView.ItemsLayout>
 
-        <CollectionView.ItemTemplate>
-            <DataTemplate>
-                <StackLayout 
-                    Orientation="Horizontal"
-                    x:DataType="local:VehicleManufacturer">
+    <RefreshView x:DataType="viewmodels:VehicleManufacturersViewModel" Command="{Binding LoadManufsCommand}">
+        <CollectionView x:Name="ItemsListView"
+                ItemsSource="{Binding Manufacturers}"
+                SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Padding="10" x:DataType="local:VehicleManufacturer">
+                        <Label Text="{Binding Name}" 
+                            LineBreakMode="NoWrap" 
+                            Style="{DynamicResource ListItemTextStyle}" 
+                            FontSize="16" />
 
-                    <Label
-                        Text="{Binding Name}"
-                        FontSize="Default"/>
-                    
-                </StackLayout>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-        
-    </CollectionView>
-    
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </RefreshView>
+
 </ContentPage>
