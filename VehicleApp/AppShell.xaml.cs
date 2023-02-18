@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using VehicleApp.Views;
+using Xamarin.Forms;
 
 namespace VehicleApp
 {
@@ -7,6 +8,7 @@ namespace VehicleApp
         public AppShell()
         {
             InitializeComponent();
+            Routing.RegisterRoute(nameof(VehicleManufacturersScreen), typeof(VehicleManufacturersScreen));
         }
 
     }

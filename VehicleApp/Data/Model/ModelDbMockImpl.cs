@@ -12,8 +12,8 @@ namespace VehicleApp.Data.Model
 {
     public class ModelDbMockImpl : IDatabaseMock<VehicleModel>
     {   
-        private List<VehicleManufacturer> _manufacturers;
         private IMapper _mapper;
+        private List<VehicleManufacturer> _manufacturers;
         public readonly List<VehicleModel> items;
        
         public ModelDbMockImpl(ManufacturerDbMockImpl manufacturersDbMock, IContainer container)
@@ -30,7 +30,7 @@ namespace VehicleApp.Data.Model
             return await Task.FromResult(true);
         }
 
-        public async Task<ICollection<VehicleModel>> GetAllItemsAsync()
+        public async Task<IEnumerable<VehicleModel>> GetAllItemsAsync()
         {
             return await Task.FromResult(items);
         }

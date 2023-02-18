@@ -9,6 +9,7 @@ namespace VehicleApp.DI.Modules
 {
     public class AutomapperModule: Module
     {
+        /*
         protected override void Load(ContainerBuilder builder)
         {
             base.Load(builder);
@@ -19,6 +20,24 @@ namespace VehicleApp.DI.Modules
             })).As<IMapper>()
             .InstancePerLifetimeScope();
         }
+        */
+        protected override void Load(ContainerBuilder builder)
+        {
+            base.Load(builder);
+
+            builder.Register(context => new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile<VehicleModelProfile>();
+            })).AsSelf()
+            .SingleInstance();
+
+            builder.Register(
+                c => c.Resolve<MapperConfiguration>().CreateMapper(c.Resolve))
+                .As<IMapper>()
+                .InstancePerLifetimeScope();
+
+        }
+
     }
 
     internal class VehicleModelProfile: Profile

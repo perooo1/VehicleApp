@@ -1,23 +1,24 @@
 ﻿using Autofac;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
 using VehicleApp.Data;
 using VehicleApp.Data.Manufacturer;
 using VehicleApp.Service.Models;
+using Xamarin.Forms;
 
 namespace VehicleApp.Repository
 {
-    public class ManufacturerRepositoryImpl : IDatabaseMock<VehicleManufacturer>
+    public class ManufacturerRepositoryImpl
     {
-        //These repos should implement interface eg. "IRepository" but since it would have the same methods as IDatabaseMock, I decided to reuse that one.
+        private IDatabaseMock<VehicleManufacturer> db;
 
-        private IDatabaseMock<VehicleManufacturer> db; 
-
-        public ManufacturerRepositoryImpl(IContainer container)
+        public ManufacturerRepositoryImpl()
         {
-            this.db = container.Resolve<IDatabaseMock<VehicleManufacturer>>();
+            this.db = DependencyService.Get<IDatabaseMock<VehicleManufacturer>>();
+            //this.db = container.Resolve<IDatabaseMock<VehicleManufacturer>>();
         }
 
         public Task<bool> AddItemAsync(VehicleManufacturer item)
@@ -25,8 +26,10 @@ namespace VehicleApp.Repository
             return db.AddItemAsync(item);
         }
 
-        public Task<ICollection<VehicleManufacturer>> GetAllItemsAsync()
+        public Task<IEnumerable<VehicleManufacturer>> GetAllItemsAsync()
         {
+            Trace.WriteLine("inside repository, inside get all items async");
+            Trace.WriteLine(db, "db is:");
             return db.GetAllItemsAsync();
         }
 

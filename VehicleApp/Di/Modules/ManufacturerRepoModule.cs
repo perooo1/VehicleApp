@@ -8,13 +8,12 @@ using VehicleApp.Repository;
 
 namespace VehicleApp.DI.VehicleManufacturerModule
 {
-    public class ManufacturerModule: Module //ovdje mu dajem repository
+    public class ManufacturerRepoModule: Module //ovdje mu dajem repository
     {
         protected override void Load(ContainerBuilder builder)
         {
             base.Load(builder);
-            builder.RegisterType<ManufacturerRepositoryImpl>().As<IDatabaseMock<ManufacturerRepositoryImpl>>().SingleInstance();
-            //builder.RegisterType<ManufacturerRepositoryImpl>().AsSelf().SingleInstance();
+            builder.RegisterType<ManufacturerRepositoryImpl>().AsSelf().SingleInstance();
         }
     }
 }

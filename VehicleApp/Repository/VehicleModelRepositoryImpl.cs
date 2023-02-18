@@ -7,18 +7,17 @@ using VehicleApp.Data;
 using VehicleApp.Data.Manufacturer;
 using VehicleApp.Data.Model;
 using VehicleApp.Service.Models;
+using Xamarin.Forms;
 
 namespace VehicleApp.Repository
 {
-    public class VehicleModelRepositoryImpl : IDatabaseMock<VehicleModel>
+    public class VehicleModelRepositoryImpl 
     {
-        //These repos should implement interface eg. "IRepository" but since it would have the same methods as IDatabaseMock, I decided to reuse that one.
-
         private IDatabaseMock<VehicleModel> db; 
         
-        public VehicleModelRepositoryImpl(IContainer container)
+        public VehicleModelRepositoryImpl()
         {
-            db = container.Resolve<ModelDbMockImpl>();
+            db = DependencyService.Get<IDatabaseMock<VehicleModel>>();
         }
 
         public Task<bool> AddItemAsync(VehicleModel item)
@@ -26,7 +25,7 @@ namespace VehicleApp.Repository
             return db.AddItemAsync(item);
         }
 
-        public Task<ICollection<VehicleModel>> GetAllItemsAsync()
+        public Task<IEnumerable<VehicleModel>> GetAllItemsAsync(bool forceRefresh = false)
         {
             return db.GetAllItemsAsync();
         }

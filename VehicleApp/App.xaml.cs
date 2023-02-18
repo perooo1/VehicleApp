@@ -13,7 +13,7 @@ namespace VehicleApp
         public App()
         {
             InitializeComponent();
-            DependencyService.Register<IDatabaseMock<ManufacturerDbMockImpl>>();
+            DependencyService.Register<IDatabaseMock<VehicleManufacturer>>();
 
             var manufacturersDbMock = new ManufacturerDbMockImpl();
             var modelsDbMock = new ModelDbMockImpl(manufacturersDbMock, AutofacContainer.Container);
