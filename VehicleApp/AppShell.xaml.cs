@@ -9,6 +9,7 @@ namespace VehicleApp
         {
             InitializeComponent();
             Routing.RegisterRoute(nameof(VehicleManufacturersScreen), typeof(VehicleManufacturersScreen));
+            Routing.RegisterRoute(nameof(ManufacturerDetailsScreen), typeof(ManufacturerDetailsScreen));
         }
     }
 }
