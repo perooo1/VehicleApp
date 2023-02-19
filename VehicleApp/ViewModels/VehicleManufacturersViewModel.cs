@@ -75,6 +75,7 @@ namespace VehicleApp.ViewModels
         public async Task OnAppearing()
         {
             IsBusy = true;
+            SelectedManuf = null;
             try
             {
                 Trace.WriteLine("Test123");
