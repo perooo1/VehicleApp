@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Shell xmlns="http://xamarin.com/schemas/2014/forms" 
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:local="clr-namespace:VehicleApp.Views"
        Title="VehicleApp"
        x:Class="VehicleApp.AppShell">
 
@@ -8,7 +9,17 @@
         The overall app visual hierarchy is defined here, along with navigation.
     
         https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/shell/
+    
+
+    <TabBar>
+        <ShellContent Route="VehicleManufacturersScreen" ContentTemplate="{DataTemplate local:VehicleManufacturersScreen}" />
+        <ShellContent Route="VehicleModelsScreen" ContentTemplate="{DataTemplate local:VehicleModelsScreen}" />
+    </TabBar>
     -->
+    <TabBar>
+        <ShellContent Title="Manufacturers" Icon="icon_about.png" Route="VehicleManufacturersScreen" ContentTemplate="{DataTemplate local:VehicleManufacturersScreen}" />
+        <ShellContent Title="Models" Icon="icon_feed.png" Route="VehicleModelsScreen" ContentTemplate="{DataTemplate local:VehicleModelsScreen}" />
+    </TabBar>
 
     <Shell.Resources>
         <ResourceDictionary>
@@ -27,6 +38,4 @@
             <Style TargetType="FlyoutItem" BasedOn="{StaticResource BaseStyle}" />
         </ResourceDictionary>
     </Shell.Resources>
-
-
 </Shell>

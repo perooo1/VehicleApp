@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -6,13 +6,25 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Autofac" Version="6.5.0" />
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="Refractored.MvvmHelpers" Version="1.6.2" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2196" />  
     <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Repository\Mock\" />
-    <Folder Include="Service\Models\" />
-    <Folder Include="Views\" />
+    <EmbeddedResource Update="Views\ManufacturerDetailsScreen.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ModelDetailsScreen.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\VehicleManufacturersScreen.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\VehicleModelsScreen.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

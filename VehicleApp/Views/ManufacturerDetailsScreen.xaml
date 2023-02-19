@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:viewmodels="clr-namespace:VehicleApp.ViewModels"
+             xmlns:models="clr-namespace:VehicleApp.Service.Models" 
+             x:DataType="viewmodels:ManufacturerDetailViewModel"
+             x:Class="VehicleApp.Views.ManufacturerDetailsScreen"
+             Title="{Binding Title}"
+             >
+    <ContentPage.Content>
+        <StackLayout Spacing="20" Padding="15">
+            <StackLayout 
+                    Padding="10" 
+                    Orientation="Horizontal"
+                    x:DataType="viewmodels:ManufacturerDetailViewModel"
+                    HorizontalOptions="FillAndExpand">
+                <Image 
+                    HeightRequest="150" 
+                    WidthRequest="150">
+                    <Image.Source>
+                        <FileImageSource File="{Binding ManufAbbrv, StringFormat='{0}.png'}"/>
+                    </Image.Source>
+                </Image>
+                <StackLayout 
+                    Orientation="Vertical" 
+                    Padding="10"
+                    HorizontalOptions="Center" 
+                    VerticalOptions="Center" 
+                    x:DataType="viewmodels:ManufacturerDetailViewModel">
+
+                    <Label Text="Name:" FontSize="Large" />
+                    <Label Text="{Binding ManufName}" FontSize="Large" FontAttributes="Bold" />
+                    <Label Text="Abbreviation:" FontSize="Large" />
+                    <Label Text="{Binding ManufAbbrv}" FontSize="Large" FontAttributes="Bold"/>
+
+                </StackLayout>
+            </StackLayout>
+
+            <Label Text="Models:" FontSize="Large" />
+
+            <RefreshView 
+                x:DataType="viewmodels:ManufacturerDetailViewModel"
+                Command="{Binding LoadVehicleModelsCommand}" 
+                IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+                <CollectionView 
+                    x:Name="VehicleModels"
+                    ItemsSource="{Binding VehicleModels}"
+                    SelectionMode="None" EmptyView="No items to display">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout 
+                                Padding="10"
+                                x:DataType="models:VehicleModel" 
+                                HorizontalOptions="Center" 
+                                VerticalOptions="Center">
+                                <Label      
+                                    Text="{Binding Name}" 
+                                    LineBreakMode="NoWrap" 
+                                    Style="{DynamicResource ListItemTextStyle}" 
+                                    FontSize="Large"
+                                    FontAttributes="Bold"/>
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer 
+                                        NumberOfTapsRequired="1"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:ManufacturerDetailViewModel}}, Path=VehicleModelSelected}"		
+                                        CommandParameter="{Binding .}"/>
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </RefreshView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
