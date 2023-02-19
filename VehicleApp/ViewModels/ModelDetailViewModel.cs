@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Text;
 using VehicleApp.Repository;
 using Xamarin.Forms;
 
@@ -65,6 +63,5 @@ namespace VehicleApp.ViewModels
                 Trace.WriteLine("Failed to Load Vehicle manufacturer.");
             }
         }
-        
     }
 }

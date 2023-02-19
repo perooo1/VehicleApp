@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace VehicleApp.Service.Models
+﻿namespace VehicleApp.Service.Models
 {
     public class VehicleManufacturer : IDetails
     {

@@ -1,8 +1,4 @@
 ﻿using Autofac;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using VehicleApp.Data;
 using VehicleApp.Repository;
 
 namespace VehicleApp.DI.VehicleModelModule

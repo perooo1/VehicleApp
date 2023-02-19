@@ -1,9 +1,5 @@
 ﻿using MvvmHelpers;
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.Text;
 using System.Threading.Tasks;
 using VehicleApp.Repository;
 using VehicleApp.Service.Models;
@@ -27,13 +23,10 @@ namespace VehicleApp.ViewModels
             Manufacturers = new ObservableRangeCollection<VehicleManufacturer>();
             LoadManufsCommand = new Command(async () => await ExecuteLoadManufsCommand());
             ManufacturerSelected = new Command<VehicleManufacturer>(OnItemSelected);
-
-            Trace.Listeners.Add(new TextWriterTraceListener(Console.Out));
         }
 
         private async Task ExecuteLoadManufsCommand()
         {
-
             IsBusy = true;
 
             try
@@ -76,6 +69,5 @@ namespace VehicleApp.ViewModels
             IsBusy = true;
             SelectedManuf = null;
         }
-
     }
 }

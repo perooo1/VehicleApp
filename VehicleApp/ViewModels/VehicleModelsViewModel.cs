@@ -1,8 +1,5 @@
 ﻿using MvvmHelpers;
-using MvvmHelpers.Commands;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using VehicleApp.Repository;
 using VehicleApp.Service.Models;
@@ -24,9 +21,8 @@ namespace VehicleApp.ViewModels
             Title = "Vehicle Models";
             this.ModelRepository= modelRepo;
             Models = new ObservableRangeCollection<VehicleModel>();
-            LoadModelsCommand = new Xamarin.Forms.Command(async () => await ExecuteLoadModelsCommand());
-            ModelSelected = new Xamarin.Forms.Command<VehicleModel>(OnModelSelected);
-
+            LoadModelsCommand = new Command(async () => await ExecuteLoadModelsCommand());
+            ModelSelected = new Command<VehicleModel>(OnModelSelected);
         }
 
         public VehicleModel SelectedModel
@@ -73,6 +69,5 @@ namespace VehicleApp.ViewModels
             IsBusy = true;
             SelectedModel = null;
         }
-
     }
 }

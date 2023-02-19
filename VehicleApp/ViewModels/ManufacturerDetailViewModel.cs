@@ -2,12 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading.Tasks;
 using VehicleApp.Repository;
 using VehicleApp.Service.Models;
-using VehicleApp.Utils;
 using VehicleApp.Views;
 using Xamarin.Forms;
 
@@ -42,12 +39,10 @@ namespace VehicleApp.ViewModels
 
         private async void OnVehicleModelSelected(VehicleModel model)
         {
-            
             if (model == null)
                 return;
 
             await Shell.Current.GoToAsync($"{nameof(ModelDetailsScreen)}?{nameof(ModelDetailViewModel.ModelId)}={model.Id}");
-            
         }
 
         private async Task ExecuteLoadVehicleModelsCommand()
@@ -67,9 +62,7 @@ namespace VehicleApp.ViewModels
                         modelsNeeded.Add(model);
                     }
                 }
-
                 VehicleModels.ReplaceRange(modelsNeeded);
-                
             }
             catch (Exception ex)
             {
@@ -89,7 +82,6 @@ namespace VehicleApp.ViewModels
             }
             set
             {
-                //SetProperty(ref selectedModel, value);
                 selectedModel = value;
                 OnVehicleModelSelected(value);
             }
@@ -136,6 +128,5 @@ namespace VehicleApp.ViewModels
             IsBusy = true;
             SelectedModel = null;
         }
-
     }
 }

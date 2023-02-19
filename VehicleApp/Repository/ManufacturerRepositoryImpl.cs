@@ -1,11 +1,6 @@
-﻿using Autofac;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using VehicleApp.Data;
-using VehicleApp.Data.Manufacturer;
 using VehicleApp.Service.Models;
 using Xamarin.Forms;
 
@@ -18,7 +13,6 @@ namespace VehicleApp.Repository
         public ManufacturerRepositoryImpl()
         {
             this.db = DependencyService.Get<IDatabaseMock<VehicleManufacturer>>();
-            //this.db = container.Resolve<IDatabaseMock<VehicleManufacturer>>();
         }
 
         public Task<bool> AddItemAsync(VehicleManufacturer item)
@@ -28,8 +22,6 @@ namespace VehicleApp.Repository
 
         public Task<IEnumerable<VehicleManufacturer>> GetAllItemsAsync(bool forceRefresh = false)
         {
-            Trace.WriteLine("inside repository, inside get all items async");
-            Trace.WriteLine(db, "db is:");
             return db.GetAllItemsAsync(forceRefresh);
         }
 

@@ -5,19 +5,6 @@
              xmlns:viewmodels="clr-namespace:VehicleApp.ViewModels"
              Title="{Binding Title}"
              x:Class="VehicleApp.Views.VehicleManufacturersScreen">
-
-
-<!--
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
--->
-
-
     <RefreshView 
         x:DataType="viewmodels:VehicleManufacturersViewModel" 
         Command="{Binding LoadManufsCommand}"
@@ -70,32 +57,9 @@
                                 </TapGestureRecognizer>
                             </StackLayout.GestureRecognizers>
                         </StackLayout>
-
                     </StackLayout>
-
-
-
-
-
-                    <!--
-                    <StackLayout Padding="10" x:DataType="local:VehicleManufacturer">
-                        <Label Text="{Binding Name}" 
-                            LineBreakMode="NoWrap" 
-                            Style="{DynamicResource ListItemTextStyle}" 
-                            FontSize="16" />
-                        <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer 
-                                NumberOfTapsRequired="1"
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:VehicleManufacturersViewModel}}, Path=ManufacturerSelected}"		
-                                CommandParameter="{Binding .}">
-                            </TapGestureRecognizer>
-                        </StackLayout.GestureRecognizers>
-                    </StackLayout>
-                    -->
-
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
     </RefreshView>
-
 </ContentPage>

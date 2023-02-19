@@ -1,14 +1,10 @@
 ﻿
 using Autofac;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using VehicleApp.Data;
 using VehicleApp.Repository;
 
 namespace VehicleApp.DI.VehicleManufacturerModule
 {
-    public class ManufacturerRepoModule: Module //ovdje mu dajem repository
+    public class ManufacturerRepoModule: Module
     {
         protected override void Load(ContainerBuilder builder)
         {

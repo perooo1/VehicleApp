@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using VehicleApp.Repository;
+﻿using VehicleApp.Repository;
 using VehicleApp.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -29,6 +24,5 @@ namespace VehicleApp.Views
             base.OnAppearing();
             viewModel.OnAppearing();
         }
-
     }
 }

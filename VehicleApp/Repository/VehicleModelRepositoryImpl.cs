@@ -1,11 +1,6 @@
-﻿using Autofac;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using VehicleApp.Data;
-using VehicleApp.Data.Manufacturer;
-using VehicleApp.Data.Model;
 using VehicleApp.Service.Models;
 using Xamarin.Forms;
 
@@ -27,7 +22,7 @@ namespace VehicleApp.Repository
 
         public Task<IEnumerable<VehicleModel>> GetAllItemsAsync(bool forceRefresh = false)
         {
-            return db.GetAllItemsAsync();
+            return db.GetAllItemsAsync(forceRefresh);
         }
 
         public Task<VehicleModel> GetItemAsync(string id)
