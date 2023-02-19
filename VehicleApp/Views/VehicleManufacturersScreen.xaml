@@ -18,12 +18,66 @@
 -->
 
 
-    <RefreshView x:DataType="viewmodels:VehicleManufacturersViewModel" Command="{Binding LoadManufsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
-        <CollectionView x:Name="ItemsListView"
+    <RefreshView 
+        x:DataType="viewmodels:VehicleManufacturersViewModel" 
+        Command="{Binding LoadManufsCommand}"
+        IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+        <CollectionView 
+                x:Name="ItemsListView"
                 ItemsSource="{Binding Manufacturers}"
                 SelectionMode="None">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
+                    <StackLayout 
+                        Padding="10" 
+                        Orientation="Horizontal"
+                        x:DataType="local:VehicleManufacturer">
+                        <Image 
+                            HeightRequest="100" 
+                            WidthRequest="100"
+                            Margin="10">
+                            <Image.Source>
+                                <FileImageSource File="{Binding Abrv, StringFormat='{0}.png'}"/>
+                            </Image.Source>
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer 
+                                        NumberOfTapsRequired="1"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:VehicleManufacturersViewModel}}, Path=ManufacturerSelected}"		
+                                        CommandParameter="{Binding .}">
+                                </TapGestureRecognizer>
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <StackLayout 
+                            Orientation="Vertical" 
+                            Padding="10"
+                            HorizontalOptions="Center" 
+                            VerticalOptions="Center" 
+                            x:DataType="local:VehicleManufacturer">
+
+                            <Label Text="{Binding Name}" 
+                                LineBreakMode="NoWrap" 
+                                Style="{DynamicResource ListItemTextStyle}" 
+                                FontSize="16" />
+                            <Label Text="{Binding Abrv}" 
+                                LineBreakMode="NoWrap" 
+                                Style="{DynamicResource ListItemTextStyle}" 
+                                FontSize="12" />
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer 
+                                    NumberOfTapsRequired="1"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:VehicleManufacturersViewModel}}, Path=ManufacturerSelected}"		
+                                    CommandParameter="{Binding .}">
+                                </TapGestureRecognizer>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+
+                    </StackLayout>
+
+
+
+
+
+                    <!--
                     <StackLayout Padding="10" x:DataType="local:VehicleManufacturer">
                         <Label Text="{Binding Name}" 
                             LineBreakMode="NoWrap" 
@@ -37,6 +91,8 @@
                             </TapGestureRecognizer>
                         </StackLayout.GestureRecognizers>
                     </StackLayout>
+                    -->
+
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>

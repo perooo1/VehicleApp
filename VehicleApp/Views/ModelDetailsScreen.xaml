@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:viewmodels="clr-namespace:VehicleApp.ViewModels"
+             x:DataType="viewmodels:ModelDetailViewModel"
+             x:Class="VehicleApp.Views.ModelDetailsScreen"
+             Title="{Binding Title}"
+             >
+    
+    <ContentPage.Content>
+
+        <StackLayout Spacing="20" Padding="15">
+            <Label Text="Name:" FontSize="Medium" />
+            <Entry Text="{Binding ModelName}" FontSize="Small"/>
+            <Label Text="Abbreviation:" FontSize="Medium" />
+            <Entry Text="{Binding ModelAbbrv}" FontSize="Small"/>
+
+        </StackLayout>
+
+    </ContentPage.Content>
+    
+    
+    
+</ContentPage>

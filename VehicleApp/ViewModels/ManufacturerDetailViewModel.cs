@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using VehicleApp.Repository;
 using VehicleApp.Service.Models;
 using VehicleApp.Utils;
+using VehicleApp.Views;
 using Xamarin.Forms;
 
 namespace VehicleApp.ViewModels
@@ -44,7 +45,7 @@ namespace VehicleApp.ViewModels
             if (model == null)
                 return;
 
-            //await Shell.Current.GoToAsync($"{nameof(VehicleModelDetailPage)}?{nameof(VehicleModelDetailViewModel.ItemId)}={item.Id}");
+            await Shell.Current.GoToAsync($"{nameof(ModelDetailsScreen)}?{nameof(ModelDetailViewModel.ModelId)}={model.Id}");
             
         }
 

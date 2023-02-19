@@ -44,7 +44,7 @@ namespace VehicleApp.ViewModels
             if (model == null)
                 return;
             
-           // await Shell.Current.GoToAsync($"{nameof(ManufacturerDetailsScreen)}?{nameof(ManufacturerDetailViewModel.ManufId)}={manuf.Id}");
+            await Shell.Current.GoToAsync($"{nameof(ModelDetailsScreen)}?{nameof(ModelDetailViewModel.ModelId)}={model.Id}");
         }
 
         private async Task ExecuteLoadModelsCommand()

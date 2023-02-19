@@ -1,7 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             xmlns:viewmodels="clr-namespace:VehicleApp.ViewModels" xmlns:models="clr-namespace:VehicleApp.Service.Models" x:DataType="viewmodels:ManufacturerDetailViewModel"
+             xmlns:viewmodels="clr-namespace:VehicleApp.ViewModels"
+             xmlns:models="clr-namespace:VehicleApp.Service.Models" 
+             x:DataType="viewmodels:ManufacturerDetailViewModel"
              x:Class="VehicleApp.Views.ManufacturerDetailsScreen"
              Title="{Binding Title}"
              >
@@ -11,9 +13,12 @@
         <StackLayout Spacing="20" Padding="15">
             <Label Text="Name:" FontSize="Medium" />
             <Entry Text="{Binding ManufName}" FontSize="Small"/>
+            <Label Text="{Binding ManufName}" FontSize="Medium" />
             <Label Text="Abbreviation:" FontSize="Medium" />
             <Entry Text="{Binding ManufAbbrv}" FontSize="Small"/>
-            
+            <Label Text="{Binding ManufAbbrv}" FontSize="Medium" />
+
+
             <Label Text="Vehicles:" FontSize="Medium" />
 
 
@@ -29,7 +34,7 @@
                             LineBreakMode="NoWrap" 
                             Style="{DynamicResource ListItemTextStyle}" 
                             FontSize="16" />
-                                <!--
+                                
                                 <StackLayout.GestureRecognizers>
                                     <TapGestureRecognizer 
                                 NumberOfTapsRequired="1"
@@ -37,7 +42,7 @@
                                 CommandParameter="{Binding .}">
                                     </TapGestureRecognizer>
                                 </StackLayout.GestureRecognizers>
-                                -->
+                                
                             </StackLayout>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
