@@ -20,7 +20,6 @@ namespace VehicleApp.ViewModels
         public Command LoadManufsCommand { get; }
         public Command<VehicleManufacturer> ManufacturerSelected { get; }
 
-
         public VehicleManufacturersViewModel(ManufacturerRepositoryImpl repo)
         {
             Title = "Manufacturers";
