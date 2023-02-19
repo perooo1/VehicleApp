@@ -72,20 +72,10 @@ namespace VehicleApp.ViewModels
             await Shell.Current.GoToAsync($"{nameof(ManufacturerDetailsScreen)}?{nameof(ManufacturerDetailViewModel.ManufId)}={manuf.Id}");
         }
 
-        public async Task OnAppearing()
+        public void OnAppearing()
         {
             IsBusy = true;
             SelectedManuf = null;
-            try
-            {
-                Trace.WriteLine("Test123");
-                await ExecuteLoadManufsCommand();
-            }
-            catch (Exception e)
-            {
-                var a = 9;
-
-            }
         }
 
     }

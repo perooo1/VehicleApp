@@ -1,8 +1,13 @@
-﻿using System;
+﻿using MvvmHelpers;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading.Tasks;
 using VehicleApp.Repository;
+using VehicleApp.Service.Models;
+using VehicleApp.Utils;
 using Xamarin.Forms;
 
 namespace VehicleApp.ViewModels
@@ -17,22 +22,70 @@ namespace VehicleApp.ViewModels
 
         public ManufacturerRepositoryImpl ManufacturerRepository { get; set; }
         public VehicleModelRepositoryImpl VehicleModelRepository { get; set; }
-
+        public ObservableRangeCollection<VehicleModel> VehicleModels { get; }
+        public Command LoadVehicleModelsCommand { get; }
+        public Command<VehicleModel> VehicleModelSelected { get; }
 
         public ManufacturerDetailViewModel(ManufacturerRepositoryImpl manufRepo, VehicleModelRepositoryImpl modelRepo)
         {
             Title = "Manufacturer Details";
             ManufacturerRepository = manufRepo;
             VehicleModelRepository= modelRepo;
+            VehicleModels = new ObservableRangeCollection<VehicleModel>();
 
+            LoadVehicleModelsCommand = new Command(async () => await ExecuteLoadVehicleModelsCommand());
+            VehicleModelSelected = new Command<VehicleModel>(OnVehicleModelSelected);
 
+        }
 
+        private async void OnVehicleModelSelected(VehicleModel model)
+        {
+            
+            if (model == null)
+                return;
+
+            //await Shell.Current.GoToAsync($"{nameof(VehicleModelDetailPage)}?{nameof(VehicleModelDetailViewModel.ItemId)}={item.Id}");
+            
+        }
+
+        private async Task ExecuteLoadVehicleModelsCommand()
+        {
+            IsBusy = true;
+
+            try
+            {
+                VehicleModels.Clear();
+                var models = await VehicleModelRepository.GetAllItemsAsync(true);
+                List<VehicleModel> modelsNeeded = new List<VehicleModel>();
+
+                foreach(var model in models)
+                {
+                    if (model.Abrv == manufAbbrv)
+                    {
+                        modelsNeeded.Add(model);
+                    }
+                }
+
+                VehicleModels.ReplaceRange(modelsNeeded);
+                
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+            finally
+            {
+                IsBusy = false;
+            }
         }
 
         public string ManufId
         {
             get { return manufId; }
-            set { LoadManufFromRepo(value); }
+            set {
+                manufId = value;
+                LoadManufFromRepo(value);
+            }
         }
 
         public string ManufName
