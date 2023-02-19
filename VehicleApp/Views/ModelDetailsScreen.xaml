@@ -6,19 +6,12 @@
              x:Class="VehicleApp.Views.ModelDetailsScreen"
              Title="{Binding Title}"
              >
-    
     <ContentPage.Content>
-
         <StackLayout Spacing="20" Padding="15">
             <Label Text="Name:" FontSize="Medium" />
             <Entry Text="{Binding ModelName}" FontSize="Small"/>
             <Label Text="Abbreviation:" FontSize="Medium" />
             <Entry Text="{Binding ModelAbbrv}" FontSize="Small"/>
-
         </StackLayout>
-
     </ContentPage.Content>
-    
-    
-    
 </ContentPage>

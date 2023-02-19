@@ -16,6 +16,7 @@ namespace VehicleApp.ViewModels
     [QueryProperty(nameof(ManufId), nameof(ManufId))]
     public class ManufacturerDetailViewModel : BaseViewModel
     {
+        private VehicleModel selectedModel;
         private string manufId;
         private string manufName;
         private string manufAbbrv;
@@ -80,6 +81,20 @@ namespace VehicleApp.ViewModels
             }
         }
 
+      public VehicleModel SelectedModel
+        {
+            get
+            {
+                return selectedModel;
+            }
+            set
+            {
+                //SetProperty(ref selectedModel, value);
+                selectedModel = value;
+                OnVehicleModelSelected(value);
+            }
+        }
+
         public string ManufId
         {
             get { return manufId; }
@@ -119,7 +134,7 @@ namespace VehicleApp.ViewModels
         public void OnAppearing()
         {
             IsBusy = true;
-            //SelectedV = null;
+            SelectedModel = null;
         }
 
     }

@@ -61,7 +61,7 @@
                             <Label Text="{Binding Abrv}" 
                                 LineBreakMode="NoWrap" 
                                 Style="{DynamicResource ListItemTextStyle}" 
-                                FontSize="12" />
+                                FontSize="15" />
                             <StackLayout.GestureRecognizers>
                                 <TapGestureRecognizer 
                                     NumberOfTapsRequired="1"

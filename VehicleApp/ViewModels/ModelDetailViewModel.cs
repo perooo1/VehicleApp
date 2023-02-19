@@ -14,9 +14,6 @@ namespace VehicleApp.ViewModels
         private string modelManufId;
         private string modelName;
         private string modelAbbrv;
-       // public string Id { get; set; }
-
-        //trebao bih u repozitoriju napravit funkciju koja vraća sve modele jednog manufa
 
         public VehicleModelRepositoryImpl ModelRepository { get; set; }
 
